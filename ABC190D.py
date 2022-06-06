@@ -33,3 +33,26 @@ for i in range(1,sq+1):
 if sq * sq == n:
   ans -= 1
 print(ans*2)
+
+#https://zenn.dev/tea/articles/7a957e64f2d913
+#答えはNの約数に含まれる奇数の数の2倍
+def divisor(n):
+    sq = n**0.5
+    border = int(sq)
+    table = []
+    bigs = []
+    for small in range(1, border+1):
+        if n%small == 0:
+            table.append(small)
+            big = n//small
+            bigs.append(big)
+    if border == sq:
+        bigs.pop()
+    table += reversed(bigs)
+    return table
+n = int(input())
+ans = []
+for i in divisor(n):
+  if i%2!=0:
+    ans.append(i)
+print(len(ans)*2)
